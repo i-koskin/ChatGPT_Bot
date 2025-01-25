@@ -55,8 +55,8 @@ chatgpt = CHATGPT(os.getenv('chat_gpt_api_key'))
 bot = telebot.TeleBot(os.getenv('TOKEN'))
 logfile = str(datetime.date.today()) + '.log'
 
-# Настройка логирования
-logging.basicConfig(level=logging.ERROR)
+# Настройка конфигурации логирования
+logging.basicConfig(filename='bot.log', level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s')
 
 # Функция для перевода аудио, в формате ".vaw" в текст
 def audio_to_text(dest_name: str):
