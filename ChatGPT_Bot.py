@@ -82,17 +82,16 @@ def start_message(message):
     markup.add(item1, item2, item3, item4, item5)
 
     bot.send_message(message.chat.id,
-                     "Привет ✌️ \nДавай пообщаемся с GPT-4. \nВыбери опцию ниже:",
+                     "Привет ✌️ \nДавайте пообщаемся с GPT-4. \nВыберите опцию ниже:",
                      reply_markup=markup)
 
 @bot.message_handler(func=lambda message: message.text == "Написать текст")
 def handle_text(message):
-    bot.send_message(message.chat.id, "Введите текст, и я отвечу вам.")
+    bot.send_message(message.chat.id, "Введите текстовый запрос и я отвечу Вам.")
 
 @bot.message_handler(func=lambda message: message.text == "Отправить аудио")
 def handle_audio(message):
-    bot.send_message(message.chat.id, "📢 Чтобы отправить голосовое сообщение, нажмите на значок микрофона в интерфейсе чата и запишите свое сообщение.\n\
-        Бот преобразует звук в текст с помощью распознавания речи, отправит текст в модель ChatGPT и ответит.\n")
+    bot.send_message(message.chat.id, "📢 Чтобы отправить голосовой запрос, нажмите на значок микрофона в интерфейсе чата и запишите свое сообщение.\n Я преобразую запрос в текст и отвечу Вам.\n")
 
 @bot.message_handler(commands=['help'])
 def help_message(message):
@@ -122,6 +121,7 @@ def message_reply(message):
 
 @bot.message_handler(content_types=['voice', 'audio'])
 def voice_processing(message):
+    bot.send_message(message.chat.id, '🌀 Преобразуем запрос в текст...')
     try:
         file_info = bot.get_file(message.voice.file_id)
         path = file_info.file_path
