@@ -67,6 +67,8 @@ def audio_to_text(dest_name: str):
     result = r.recognize_google(audio, language="ru_RU")
     return result
 
+
+
 @bot.message_handler(commands=['start'])
 def start_message(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -81,9 +83,9 @@ def start_message(message):
     # Добавляем кнопки в разметку
     markup.add(item1, item2, item3, item4, item5)
 
-    bot.send_message(message.chat.id,
-                     "Привет ✌️ \nДавайте пообщаемся с GPT-4. \nВыберите опцию ниже:",
+    bot.send_message(message.chat.id, "Чтобы начать взаимодействие с ботом выберите опцию ниже:",
                      reply_markup=markup)
+
 
 @bot.message_handler(func=lambda message: message.text == "Написать текст")
 def handle_text(message):
@@ -95,14 +97,14 @@ def handle_audio(message):
 
 @bot.message_handler(commands=['help'])
 def help_message(message):
-    bot.send_message(message.chat.id, "Это бот, который поможет вам общаться с GPT-4. Вы можете написать текст или отправить аудио.")
+    bot.send_message(message.chat.id, "Это бот, который поможет вам общаться с GPT-4.\nВы можете отправить запрос в виде текста или аудио.")
 
 # Флаг для остановки опроса
 stop_polling = False
 
 @bot.message_handler(commands=['stop'])
 def stop_polling_handler(message):
-    bot.reply_to(message, "Бот остановлен.")
+    bot.send_message(message.chat.id, "Бот остановлен.")
     global stop_polling
     stop_polling = True
 
