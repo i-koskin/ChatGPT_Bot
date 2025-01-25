@@ -50,7 +50,6 @@ class CHATGPT:
             print(f"Ошибка: {response.status_code} - {response.text}")
             return "Произошла ошибка при получении ответа."
 
-
 load_dotenv(find_dotenv())
 chatgpt = CHATGPT(os.getenv('chat_gpt_api_key'))
 bot = telebot.TeleBot(os.getenv('TOKEN'))
@@ -67,7 +66,6 @@ def audio_to_text(dest_name: str):
         audio = r.record(source)
     result = r.recognize_google(audio, language="ru_RU")
     return result
-
 
 @bot.message_handler(commands=['start'])
 def start_message(message):
