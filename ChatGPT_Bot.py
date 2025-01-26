@@ -83,7 +83,7 @@ def start_message(message):
     # Добавляем кнопки в разметку
     markup.add(item1, item2, item3, item4, item5)
 
-    bot.send_message(message.chat.id, "Чтобы начать взаимодействие с ботом выберите опцию ниже:",
+    bot.send_message(message.chat.id, "Чтобы начать взаимодействие с ботом выберите пункт меню ⬇️ или начните писать сообщение...",
                      reply_markup=markup)
 
 
@@ -108,7 +108,7 @@ stop_polling = False
 
 @bot.message_handler(commands=['stop'])
 def stop_polling_handler(message):
-    bot.send_message(message.chat.id, "Бот остановлен.")
+    bot.send_message(message.chat.id, "⛔ Бот остановлен.")
     global stop_polling
     stop_polling = True
 
@@ -143,13 +143,13 @@ def voice_processing(message):
         bot.send_message(message.chat.id, answer)
 
     except sr.UnknownValueError as e:
-        bot.send_message(message.from_user.id, "Прошу прощения, но я не разобрал сообщение, или оно пустое...")
+        bot.send_message(message.from_user.id, "🤷‍♂️ Прошу прощения, но я не разобрал сообщение, или оно пустое...")
         with open(logfile, 'a', encoding='utf-8') as f:
             f.write(str(datetime.datetime.today().strftime("%H:%M:%S")) + ':' + str(message.from_user.id) + ':' + str(
                 message.from_user.first_name) + '_' + str(message.from_user.last_name) + ':' + str(
                 message.from_user.username) + ':' + str(message.from_user.language_code) + ':Message is empty.\n')
     except Exception as e:
-        bot.send_message(message.from_user.id, "Прошу прощения, но я не разобрал сообщение, или оно пустое...")
+        bot.send_message(message.from_user.id, "🤷‍♂️ Прошу прощения, но я не разобрал сообщение, или оно пустое...")
         with open(logfile, 'a', encoding='utf-8') as f:
             f.write(str(datetime.datetime.today().strftime("%H:%M:%S")) + ':' + str(message.from_user.id) + ':' + str(
                 message.from_user.first_name) + '_' + str(message.from_user.last_name) + ':' + str(
