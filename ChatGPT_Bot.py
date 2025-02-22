@@ -86,7 +86,7 @@ def start_message(message):
     markup.add(item1, item2, item3, item4, item5)
 
     # Отправляем приветственное сообщение с клавиатурой
-    bot.send_message(message.chat.id, "Чтобы начать взаимодействие с ботом выберите пункт меню ⬇️ или начните вводить текстовый запрос или отправьте голосовой запрос...",
+    bot.send_message(message.chat.id, "Чтобы начать взаимодействие с ботом выберите пункт меню ⬇️ или введите текстовый запрос или отправьте голосовой запрос...",
                      reply_markup=markup)
 
 @bot.message_handler(func=lambda message: message.text == "Написать текст") 
